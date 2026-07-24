@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
@@ -26,6 +26,7 @@ const LaptopIcon = ({ size = 24, className = "" }) => (
 
 const ContactPage = () => {
   const { t } = useTranslation();
+  const [mapActive, setMapActive] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 700, once: true, easing: "ease-out" });
@@ -110,24 +111,35 @@ const ContactPage = () => {
             <div className="absolute -top-10 -right-10 w-60 h-60 bg-blue-500/20 blur-[80px] rounded-full pointer-events-none z-10" />
 
             {/*
-              Malika bozori aniq koordinatalar: 41.338874, 69.271481
-              (Kichik Halqa Yo'l 59, Shayxontohur tumani)
+              Malika bozori aniq koordinatalar: 41.295806, 69.215712
+              loc: prefix — noto'g'ri biznes nomi (masalan "Jizzax Fayz") o'rniga oddiy pin ko'rsatadi
               controls=0  — barcha tugmalar (+/-/kompas/qalam) yashiriladi
               traffic=false — trafik o'chirilgan
             */}
             <iframe
               title="Malika bozori xarita"
-              src="https://yandex.uz/map-widget/v1/?ll=69.271481%2C41.338874&z=17&pt=69.271481,41.338874,pm2bll&controls=false&traffic=false"
+              src="https://www.google.com/maps?q=loc:41.295806,69.215712&z=16&output=embed"
               width="100%"
               height="100%"
               style={{
                 border: 0,
                 filter: "invert(92%) hue-rotate(180deg) saturate(0.8) brightness(0.85)",
                 display: "block",
+                pointerEvents: mapActive ? "auto" : "none",
               }}
               allowFullScreen
               loading="lazy"
             />
+            {/* Xarita fokusga tushmaguncha scroll sahifani aylantiradi;
+                bosilgach fokus tushadi va Ctrl siz scroll bilan zoom ishlaydi */}
+            {!mapActive && (
+              <button
+                type="button"
+                onClick={() => setMapActive(true)}
+                aria-label="Xaritani faollashtirish"
+                className="absolute inset-0 z-10 cursor-pointer bg-transparent"
+              />
+            )}
 
             {/* Overlay */}
             <div className="absolute bottom-4 left-4 right-4 z-20 bg-[#020817]/80 backdrop-blur-md border border-blue-500/20 rounded-2xl px-5 py-4 flex items-center gap-4">
