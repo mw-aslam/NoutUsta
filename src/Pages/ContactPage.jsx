@@ -48,7 +48,7 @@ const ContactPage = () => {
     {
       icon: MapPin,
       label: t("contactPage.address"),
-      value: "Toshkent shahri Malika bozori. Malika A14 do'kon",
+      value: "Toshkent shahri, Chilonzor tumani, Qatortol ko'chasi, 1-uy",
     },
     {
       icon: Clock3,
