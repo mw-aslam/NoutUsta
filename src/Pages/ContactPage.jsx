@@ -148,7 +148,7 @@ const ContactPage = () => {
               </div>
               <div>
                 <p className="text-xs text-gray-400 mb-0.5">Bizning manzil</p>
-                <p className="text-sm font-semibold">Toshkent shahri, Malika do'kon, A 14</p>
+                <p className="text-sm font-semibold">Toshkent shahri, Chilonzor tumani, Qatortol ko'chasi, 1-uy</p>
               </div>
             </div>
           </div>
